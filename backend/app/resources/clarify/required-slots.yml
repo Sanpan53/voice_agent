@@ -1,0 +1,28 @@
+# 按品类维护的必填槽位表。
+#
+# 为什么跑鞋要 scenario 必填、手表不用——因为跑鞋场景决定的是鞋底、缓震、宽度，
+# 差一点用户就不舒服；手表买回去戴手上，场景信息对推荐帮助不大。
+#
+# 这种配置每个品类由产品 / 算法联合维护，上线前 Review。
+
+跑鞋:
+  required: [category, scenario, budget]
+  nice_to_have: [brand, gender]
+  scenario_options: ["塑胶跑道", "水泥路", "越野", "健身房", "不固定"]
+
+T恤:
+  required: [category, gender, budget]
+  nice_to_have: [brand, scenario]
+  scenario_options: ["日常", "运动", "商务休闲"]
+
+手表:
+  required: [category, budget]
+  nice_to_have: [brand, scenario, gender]
+
+口红:
+  required: [category, budget]
+  nice_to_have: [brand, skin_type]
+
+default:
+  required: [category, budget]
+  nice_to_have: [brand]

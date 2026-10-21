@@ -1,0 +1,32 @@
+# 真实配置与密钥
+#
+# ⚠️ `.env` 这一条**只匹配名字正好是 .env 的文件**，不匹配 .env.remote-backup
+# 之类的变体——那个文件名看着像"备份"，实际装着同一套真实密钥。
+# 所以这里用 `.env.*` 兜住所有变体，再把必须入库的模板用 `!` 放回来。
+# 加新变体（.env.local / .env.prod …）不用改这里，已经是覆盖的。
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+
+# 前端（仅保留在本地，不纳入仓库）
+frontend/
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+
+# 测试 / 工具缓存
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# 系统
+.DS_Store

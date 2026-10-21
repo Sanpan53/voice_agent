@@ -1,0 +1,43 @@
+# voice_agent 的 conda 环境定义。
+#
+# 用 conda 创建虚拟环境（Python 3.12），
+# 通过 pip 安装 Python 依赖。依赖清单与 pyproject.toml 保持一致。
+name: voice_agent
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      # ---- Web 框架 ----
+      - fastapi>=0.115
+      - uvicorn[standard]>=0.30
+      - pydantic>=2.8
+      - pydantic-settings>=2.4
+      # ---- 数据库 / 缓存 ----
+      - sqlalchemy[asyncio]>=2.0.30
+      - asyncpg>=0.29
+      - alembic>=1.13
+      - pgvector>=0.3
+      - redis>=5.0
+      # ---- 模型 / 语音 ----
+      - dashscope>=1.20
+      # AgentScope Python（多 Agent 方案）
+      - agentscope>=1.0.21,<2.0
+      # agentscope 1.0.21 对 mcp 未加版本上界，mcp 2.x 改了函数名会导致
+      # `import agentscope` 失败，必须锁 <2。
+      - mcp>=1.13,<2.0
+      # agentscope 的 evaluate 模块用到 tqdm 但未声明，需显式补齐。
+      - tqdm>=4.66
+      # ---- 配置 ----
+      # YAML 解析（澄清规则的品类必填槽位表）
+      - pyyaml>=6.0
+      # ---- 认证 / 监控 ----
+      - PyJWT>=2.8
+      - prometheus-client>=0.20
+      - httpx>=0.27
+      # ---- 开发 / 测试 ----
+      - pytest>=8.2
+      - pytest-asyncio>=0.23
+      - ruff>=0.5
